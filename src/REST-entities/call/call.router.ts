@@ -14,6 +14,7 @@ import {
   getFavourites,
   getCalls,
   searchCalls,
+  getRussianCategories,
   getCategories,
   getCategory,
   getAds,
@@ -145,6 +146,7 @@ router.get(
   tryCatchWrapper(searchCalls)
 );
 router.get("/categories", tryCatchWrapper(getCategories));
+router.get("/russian-categories", tryCatchWrapper(getRussianCategories));
 router.get("/specific/:category", tryCatchWrapper(getCategory));
 router.get("/ads", tryCatchWrapper(getAds));
 

@@ -324,6 +324,21 @@ export const getCategories = async (req: Request, res: Response) => {
   res.status(200).send(categories);
 };
 
+export const getRussianCategories = async (req: Request, res: Response) => {
+  res
+    .status(200)
+    .send([
+      "Недвижимость",
+      "Транспорт",
+      "Работа",
+      "Электроника",
+      "Бизнес и услуги",
+      "Отдых и спорт",
+      "Отдам бесплатно",
+      "Обмен",
+    ]);
+};
+
 export const getCategory = async (req: Request, res: Response) => {
   let { category } = req.params;
   let calls: ICall[];

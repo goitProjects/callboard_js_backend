@@ -1465,6 +1465,33 @@ describe("Call router test suite", () => {
     });
   });
 
+  describe("GET /call/russian-categories", () => {
+    let response: Response;
+
+    context("Valid request", () => {
+      beforeAll(async () => {
+        response = await supertest(app).get(`/call/russian-categories`);
+      });
+
+      it("Should return a 200 status code", () => {
+        expect(response.status).toBe(200);
+      });
+
+      it("Should return an expected result", () => {
+        expect(response.body).toEqual([
+          "Недвижимость",
+          "Транспорт",
+          "Работа",
+          "Электроника",
+          "Бизнес и услуги",
+          "Отдых и спорт",
+          "Отдам бесплатно",
+          "Обмен",
+        ]);
+      });
+    });
+  });
+
   describe("GET /call/ads", () => {
     let response: Response;
 

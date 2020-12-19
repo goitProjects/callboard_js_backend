@@ -609,6 +609,25 @@
         }
       }
     },
+    "/call/russian-categories": {
+      "get": {
+        "tags": ["Call"],
+        "summary": "Get a list of categories",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRussianCategories"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/call/specific/{category}": {
       "get": {
         "tags": ["Call"],
@@ -1828,6 +1847,24 @@
           "recreation and sport",
           "free",
           "trade"
+        ]
+      },
+      "GetRussianCategories": {
+        "type": "array",
+        "description": "All categories from server (in russian)",
+        "items": {
+          "type": "string",
+          "description": "Category"
+        },
+        "example": [
+          "Недвижимость",
+          "Транспорт",
+          "Работа",
+          "Электроника",
+          "Бизнес и услуги",
+          "Отдых и спорт",
+          "Отдам бесплатно",
+          "Обмен"
         ]
       },
       "GetCategory": {
