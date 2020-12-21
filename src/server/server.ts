@@ -1,5 +1,5 @@
-import cors from "cors";
 import path from "path";
+import cors from "cors";
 import express, { Application, Request, Response, NextFunction } from "express";
 import mongoose from "mongoose";
 import swaggerUi from "swagger-ui-express";
