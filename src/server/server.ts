@@ -33,7 +33,7 @@ export default class Server {
 
   private initMiddlewares() {
     this.app.use(express.json());
-    this.app.use(cors({ origin: "*" }));
+    this.app.use(cors({ origin: process.env.ALLOWED_ORIGIN }));
   }
 
   private async initDbConnection() {
