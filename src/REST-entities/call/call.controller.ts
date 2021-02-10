@@ -140,7 +140,7 @@ export const editCall = async (req: Request, res: Response) => {
     (userCall.category === Categories.WORK ||
       userCall.category === Categories.FREE ||
       userCall.category === Categories.TRADE) &&
-    fieldsToChange.price
+    Number(fieldsToChange.price)
   ) {
     return res.status(400).send({
       message: `Can't set price for ${userCall.category} category. Must be 0`,
@@ -151,7 +151,7 @@ export const editCall = async (req: Request, res: Response) => {
       (fieldsToChange.category === Categories.TRADE ||
         fieldsToChange.category === Categories.FREE ||
         fieldsToChange.category === Categories.WORK) &&
-      fieldsToChange.price
+      Number(fieldsToChange.price)
     ) {
       return res.status(400).send({
         message: `Can't set price for ${fieldsToChange.category} category. Must be 0`,
