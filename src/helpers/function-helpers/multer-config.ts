@@ -44,8 +44,8 @@ export const uploadImage = (file: Express.Multer.File) => {
         );
         resolve(publicUrl);
       })
-      .on("error", () => {
-        reject(`Unable to upload image, something went wrong`);
+      .on("error", (err: any) => {
+        reject(err);
       })
       .end(buffer);
   });
