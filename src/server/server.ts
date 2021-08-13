@@ -66,7 +66,7 @@ export default class Server {
     this.app.use(
       (err: any, req: Request, res: Response, next: NextFunction): Response => {
         let status = 500;
-        if (err.response.status) {
+        if (err.response) {
           status = err.response.status;
         }
         return res.status(status).send(err.message);
