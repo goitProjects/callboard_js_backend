@@ -1359,7 +1359,7 @@
           },
           "imageUrls": {
             "type": "array",
-            "description": "Array of image URLs. Can't send both with image files",
+            "description": "Array of image URLs. Set here links to old photos (on GCP), that you want to save while adding new ones as files",
             "items": {
               "type": "string"
             },

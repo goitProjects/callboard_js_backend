@@ -176,11 +176,8 @@ export const editCall = async (req: Request, res: Response) => {
     }
     (userCall as ICall).imageUrls = imageUrls;
   } 
-  if(req.files && req.files.length && fieldsToChange.imageUrls) {
-    return res.status(400).send({message: "Can't send both image files and imageUrls array"})
-  }
   if(fieldsToChange.imageUrls) {
-    (userCall as ICall).imageUrls = fieldsToChange.imageUrls;
+    (userCall as ICall).imageUrls = [...fieldsToChange.imageUrls, ...(userCall as ICall).imageUrls];
   }
   if((req.files && !req.files.length && !fieldsToChange.imageUrls) || (!req.files && !fieldsToChange.imageUrls)) {
     (userCall as ICall).imageUrls = existingImgs;
