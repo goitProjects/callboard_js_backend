@@ -136,7 +136,7 @@ export const editCall = async (req: Request, res: Response) => {
   if (!callToUpdate || !userCall) {
     return res.status(404).send({ message: "Call not found" });
   }
-  let existingImgs = callToUpdate.imageUrls;
+  let existingImgs = [...userCall.imageUrls];
   if (
     (userCall.category === Categories.WORK ||
       userCall.category === Categories.FREE ||
@@ -162,7 +162,7 @@ export const editCall = async (req: Request, res: Response) => {
   if (req.fileValidationError) {
     return res.status(415).send({ message: req.fileValidationError });
   }
-  if (req.files) {
+  if (req.files.length) {
     if (req.files.length > 5) {
       return res
         .status(400)
