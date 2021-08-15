@@ -1356,6 +1356,14 @@
             "type": "string",
             "description": "Call's image (could be more than one, maximum 5)",
             "format": "binary"
+          },
+          "imageUrls": {
+            "type": "array",
+            "description": "Array of image URLs. Can't send both with image files",
+            "items": {
+              "type": "string"
+            },
+            "example": "https://storage.googleapis.com/kidslikev2_bucket/b11127c9-e65c-44de-ad12-deded8612bbf.jpg"
           }
         }
       },

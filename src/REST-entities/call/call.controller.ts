@@ -162,7 +162,7 @@ export const editCall = async (req: Request, res: Response) => {
   if (req.fileValidationError) {
     return res.status(415).send({ message: req.fileValidationError });
   }
-  if (req.files.length) {
+  if (req.files && req.files.length) {
     if (req.files.length > 5) {
       return res
         .status(400)
@@ -175,7 +175,14 @@ export const editCall = async (req: Request, res: Response) => {
       imageUrls.push(imageUrl as string);
     }
     (userCall as ICall).imageUrls = imageUrls;
-  } else {
+  } 
+  if(req.files && req.files.length && fieldsToChange.imageUrls) {
+    return res.status(400).send({message: "Can't send both image files and imageUrls array"})
+  }
+  if(fieldsToChange.imageUrls) {
+    (userCall as ICall).imageUrls = fieldsToChange.imageUrls;
+  }
+  if((req.files && !req.files.length && !fieldsToChange.imageUrls) || (!req.files && !fieldsToChange.imageUrls)) {
     (userCall as ICall).imageUrls = existingImgs;
   }
   if (fieldsToChange.price) {
