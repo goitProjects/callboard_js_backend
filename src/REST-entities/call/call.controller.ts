@@ -174,7 +174,7 @@ export const editCall = async (req: Request, res: Response) => {
       const imageUrl = await uploadImage(image);
       imageUrls.push(imageUrl as string);
     }
-    (userCall as ICall).imageUrls = imageUrls;
+    (userCall as ICall).imageUrls = [...imageUrls, ...existingImgs];
   }
   if (fieldsToChange.imageUrls) {
     (userCall as ICall).imageUrls = [
@@ -186,10 +186,7 @@ export const editCall = async (req: Request, res: Response) => {
     (req.files && !req.files.length && !fieldsToChange.imageUrls) ||
     (!req.files && !fieldsToChange.imageUrls)
   ) {
-    (userCall as ICall).imageUrls = [
-      ...(userCall as ICall).imageUrls,
-      ...existingImgs,
-    ];
+    (userCall as ICall).imageUrls = [...existingImgs];
   }
   if (fieldsToChange.price) {
     if (fieldsToChange.price === (userCall as ICall).price) {
