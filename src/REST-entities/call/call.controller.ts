@@ -178,7 +178,7 @@ export const editCall = async (req: Request, res: Response) => {
   }
   if (fieldsToChange.imageUrls) {
     (userCall as ICall).imageUrls = [
-      ...fieldsToChange.imageUrls,
+      ...JSON.parse(fieldsToChange.imageUrls),
       ...(userCall as ICall).imageUrls,
     ];
   }
