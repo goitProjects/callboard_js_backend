@@ -136,6 +136,7 @@ export const editCall = async (req: Request, res: Response) => {
   if (!callToUpdate || !userCall) {
     return res.status(404).send({ message: "Call not found" });
   }
+  let existingImgs = callToUpdate.imageUrls;
   if (
     (userCall.category === Categories.WORK ||
       userCall.category === Categories.FREE ||
@@ -174,6 +175,8 @@ export const editCall = async (req: Request, res: Response) => {
       imageUrls.push(imageUrl as string);
     }
     (userCall as ICall).imageUrls = imageUrls;
+  } else {
+    (userCall as ICall).imageUrls = existingImgs;
   }
   if (fieldsToChange.price) {
     if (fieldsToChange.price === (userCall as ICall).price) {
