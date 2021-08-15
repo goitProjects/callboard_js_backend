@@ -175,12 +175,21 @@ export const editCall = async (req: Request, res: Response) => {
       imageUrls.push(imageUrl as string);
     }
     (userCall as ICall).imageUrls = imageUrls;
-  } 
-  if(fieldsToChange.imageUrls) {
-    (userCall as ICall).imageUrls = [...fieldsToChange.imageUrls, ...(userCall as ICall).imageUrls];
   }
-  if((req.files && !req.files.length && !fieldsToChange.imageUrls) || (!req.files && !fieldsToChange.imageUrls)) {
-    (userCall as ICall).imageUrls = existingImgs;
+  if (fieldsToChange.imageUrls) {
+    (userCall as ICall).imageUrls = [
+      ...fieldsToChange.imageUrls,
+      ...(userCall as ICall).imageUrls,
+    ];
+  }
+  if (
+    (req.files && !req.files.length && !fieldsToChange.imageUrls) ||
+    (!req.files && !fieldsToChange.imageUrls)
+  ) {
+    (userCall as ICall).imageUrls = [
+      ...(userCall as ICall).imageUrls,
+      ...existingImgs,
+    ];
   }
   if (fieldsToChange.price) {
     if (fieldsToChange.price === (userCall as ICall).price) {
