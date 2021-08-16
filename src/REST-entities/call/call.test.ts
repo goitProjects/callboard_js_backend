@@ -896,7 +896,7 @@ describe("Call router test suite", () => {
       });
 
       it("Should update images", () => {
-        expect((createdCall as ICall).imageUrls.length).toBe(1);
+        expect((createdCall as ICall).imageUrls.length).toBe(3);
       });
     });
 

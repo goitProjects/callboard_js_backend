@@ -130,6 +130,7 @@ export const editCall = async (req: Request, res: Response) => {
   const fieldsToChange = req.body;
   const callToUpdate = await CallModel.findById(callId);
   let callImages: Express.Multer.File[];
+  let imageUrls: string[] = [];
   let userCall = (user as IUser).calls.find(
     (call) => call._id.toString() === callId
   );
@@ -169,7 +170,6 @@ export const editCall = async (req: Request, res: Response) => {
         .send({ message: "Only 5 and less images are allowed" });
     }
     callImages = req.files as Express.Multer.File[];
-    const imageUrls: string[] = [];
     for (const image of callImages as Express.Multer.File[]) {
       const imageUrl = await uploadImage(image);
       imageUrls.push(imageUrl as string);
@@ -178,8 +178,8 @@ export const editCall = async (req: Request, res: Response) => {
   }
   if (fieldsToChange.imageUrls) {
     (userCall as ICall).imageUrls = [
+      ...imageUrls,
       ...JSON.parse(fieldsToChange.imageUrls),
-      ...(userCall as ICall).imageUrls,
     ];
   }
   if (fieldsToChange.price) {
