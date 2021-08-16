@@ -182,12 +182,6 @@ export const editCall = async (req: Request, res: Response) => {
       ...(userCall as ICall).imageUrls,
     ];
   }
-  if (
-    (req.files && !req.files.length && !fieldsToChange.imageUrls) ||
-    (!req.files && !fieldsToChange.imageUrls)
-  ) {
-    (userCall as ICall).imageUrls = [...existingImgs];
-  }
   if (fieldsToChange.price) {
     if (fieldsToChange.price === (userCall as ICall).price) {
       return res.status(400).send({ message: "Can't set the same price" });

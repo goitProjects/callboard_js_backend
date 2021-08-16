@@ -88,7 +88,7 @@ const editCallSchema = Joi.object({
     }
     return value;
   }),
-  imageUrls: Joi.array().items(Joi.string())
+  imageUrls: Joi.string()
 });
 
 const getCallsSchema = Joi.object({
