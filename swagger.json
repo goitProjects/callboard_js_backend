@@ -1358,12 +1358,9 @@
             "format": "binary"
           },
           "imageUrls": {
-            "type": "array",
-            "description": "Array of image URLs. Set here links to old photos (on GCP), that you want to save while adding new ones as files",
-            "items": {
-              "type": "string"
-            },
-            "example": "https://storage.googleapis.com/kidslikev2_bucket/b11127c9-e65c-44de-ad12-deded8612bbf.jpg"
+            "type": "string",
+            "description": "Stringified array of image URLs. Set here links to old photos (on GCP). Use if you want to delete existing photos (send stringified array with all links except the one you want to delete)",
+            "example": "'[https://storage.googleapis.com/kidslikev2_bucket/b11127c9-e65c-44de-ad12-deded8612bbf.jpg]'"
           }
         }
       },
