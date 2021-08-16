@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "version": "2.0.5",
+    "version": "2.0.6",
     "title": "Callboard API docs",
     "description": "API documentation for GoIT project 'Callboard'. [Backend github repository](https://github.com/DanTsvirkun/callboard-backend)",
     "license": {

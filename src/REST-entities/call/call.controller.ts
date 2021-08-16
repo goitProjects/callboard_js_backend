@@ -182,6 +182,9 @@ export const editCall = async (req: Request, res: Response) => {
       ...JSON.parse(fieldsToChange.imageUrls),
     ];
   }
+  if((userCall as ICall).imageUrls.length > 5) {
+    return res.status(400).send({message: "Only 5 and less images are allowed"})
+  }
   if (fieldsToChange.price) {
     if (fieldsToChange.price === (userCall as ICall).price) {
       return res.status(400).send({ message: "Can't set the same price" });
