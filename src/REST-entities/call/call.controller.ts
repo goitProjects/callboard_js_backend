@@ -187,7 +187,7 @@ export const editCall = async (req: Request, res: Response) => {
       return res.status(400).send({ message: "Can't set the same price" });
     }
     (userCall as ICall).oldPrice = (userCall as ICall).price;
-    userCall = { ...userCall.toObject(), ...fieldsToChange };
+    userCall = { ...userCall.toObject(), ...fieldsToChange, imageUrls: userCall.imageUrls };
     if (((userCall as ICall).oldPrice as number) > (userCall as ICall).price) {
       (userCall as ICall).isOnSale = true;
       ((userCall as ICall).discountPercents as number) =
@@ -200,7 +200,7 @@ export const editCall = async (req: Request, res: Response) => {
       (userCall as ICall).discountPercents = 0;
     }
   } else {
-    userCall = { ...userCall.toObject(), ...fieldsToChange };
+    userCall = { ...userCall.toObject(), ...fieldsToChange, imageUrls: userCall.imageUrls };
   }
   await CallModel.findByIdAndUpdate(callId, userCall, {
     overwrite: true,
