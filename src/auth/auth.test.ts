@@ -37,15 +37,15 @@ describe("Auth router test suite", () => {
 
     const validReqBody = { email: "test@email.com", password: "qwerty123" };
 
-    const invalidReqBody = { email: "test@email.com" };
+    const invalidReqBody = { email: "testt@email.com" };
 
     const secondInvalidReqBody = {
-      email: "test@email.com",
+      email: "testtt@email.com",
       password: "qwerty123",
       extra: {},
     };
 
-    const thirdInvalidReqBody = { email: "test@email.com", password: {} };
+    const thirdInvalidReqBody = { email: "testttt@email.com", password: {} };
 
     context("With validReqBody", () => {
       beforeAll(async () => {
@@ -218,7 +218,7 @@ describe("Auth router test suite", () => {
         expect(
           jwt.verify(
             response.body.accessToken,
-            process.env.JWT_SECRET as string
+            process.env.JWT_ACCESS_SECRET as string
           )
         ).toBeTruthy();
       });
@@ -227,7 +227,7 @@ describe("Auth router test suite", () => {
         expect(
           jwt.verify(
             response.body.refreshToken,
-            process.env.JWT_SECRET as string
+            process.env.JWT_REFRESH_SECRET as string
           )
         ).toBeTruthy();
       });
@@ -335,7 +335,7 @@ describe("Auth router test suite", () => {
         expect(
           jwt.verify(
             response.body.newAccessToken,
-            process.env.JWT_SECRET as string
+            process.env.JWT_ACCESS_SECRET as string
           )
         ).toBeTruthy();
       });
@@ -344,7 +344,7 @@ describe("Auth router test suite", () => {
         expect(
           jwt.verify(
             response.body.newRefreshToken,
-            process.env.JWT_SECRET as string
+            process.env.JWT_REFRESH_SECRET as string
           )
         ).toBeTruthy();
       });

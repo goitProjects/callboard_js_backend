@@ -23,8 +23,8 @@ import { multerMid } from "../../helpers/function-helpers/multer-config";
 import { Categories } from "../../helpers/typescript-helpers/enums";
 
 const postCallSchema = Joi.object({
-  title: Joi.string().required(),
-  description: Joi.string().required(),
+  title: Joi.string().min(2).max(100).required(),
+  description: Joi.string().min(2).max(100).required(),
   category: Joi.string()
     .required()
     .valid(
@@ -37,7 +37,7 @@ const postCallSchema = Joi.object({
       Categories.TRANSPORT,
       Categories.WORK
     ),
-  price: Joi.number().required().min(0),
+  price: Joi.number().required().min(0).max(1000000000),
   phone: Joi.custom((value, helpers) => {
     const uaPhoneRegex = /^\+?3?8?(0\d{9})$/;
     const isValidPhone = uaPhoneRegex.test(value);
@@ -65,8 +65,8 @@ const callIdSchema = Joi.object({
 });
 
 const editCallSchema = Joi.object({
-  title: Joi.string(),
-  description: Joi.string(),
+  title: Joi.string().min(2).max(100),
+  description: Joi.string().min(2).max(100),
   category: Joi.string().valid(
     Categories.BUSINESS_AND_SERVICES,
     Categories.ELECTRONICS,
@@ -77,7 +77,7 @@ const editCallSchema = Joi.object({
     Categories.TRANSPORT,
     Categories.WORK
   ),
-  price: Joi.number().min(0),
+  price: Joi.number().min(0).max(1000000000),
   phone: Joi.custom((value, helpers) => {
     const uaPhoneRegex = /^\+?3?8?(0\d{9})$/;
     const isValidPhone = uaPhoneRegex.test(value);
@@ -88,7 +88,6 @@ const editCallSchema = Joi.object({
     }
     return value;
   }),
-  imageUrls: Joi.string()
 });
 
 const getCallsSchema = Joi.object({
@@ -96,7 +95,7 @@ const getCallsSchema = Joi.object({
 });
 
 const searchCallsSchema = Joi.object({
-  search: Joi.string().required(),
+  search: Joi.string().min(1).max(100).required(),
 });
 
 const router = Router();
